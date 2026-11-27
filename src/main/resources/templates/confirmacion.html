@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Confirmación - Mano a Mano</title></head>
+<body style="font-family:Arial;text-align:center;margin-top:60px">
+    <h2 th:text="${ok} ? 'Listo' : 'No se pudo confirmar'"></h2>
+    <p th:text="${mensaje}"></p>
+    <a th:href="@{/login}">Ir a iniciar sesión</a>
+</body>
+</html>
