@@ -41,9 +41,16 @@ public class ServicioController {
         return "redirect:/servicios/" + servicio.getId();
     }
 
-    @GetMapping("/{id}")
+        @GetMapping("/{id}")
     public String detalle(@PathVariable Long id, Model model) {
         model.addAttribute("servicio", contratacionService.buscarPorId(id));
+        model.addAttribute("cotizaciones", contratacionService.listarCotizaciones(id));
         return "contratacion/servicio-detalle";
+    }
+
+    @PostMapping("/{id}/cotizaciones")
+    public String pedirCotizacion(@PathVariable Long id) {
+        contratacionService.pedirCotizacion(id);
+        return "redirect:/servicios/" + id;
     }
 }

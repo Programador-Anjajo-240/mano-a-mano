@@ -56,10 +56,27 @@ public class Cotizacion {
         this.estado = EstadoCotizacion.RESPONDIDA;
     }
 
-    public BigDecimal getTotal() {
-        return manoDeObra.add(materiales);
+        public void aceptar() {
+        if (estado != EstadoCotizacion.RESPONDIDA) {
+            throw new IllegalStateException("Solo se puede aceptar una cotización respondida");
+        }
+        this.estado = EstadoCotizacion.ACEPTADA;
     }
 
+    public void rechazar() {
+        if (estado == EstadoCotizacion.ACEPTADA) {
+            throw new IllegalStateException("No se puede rechazar una cotización aceptada");
+        }
+        this.estado = EstadoCotizacion.RECHAZADA;
+    }
+
+    public BigDecimal getTotal() {
+        if (manoDeObra == null || materiales == null) {
+            return BigDecimal.ZERO;
+        }
+        return manoDeObra.add(materiales);
+    }
+    
     public Long getId() {
         return id;
     }
