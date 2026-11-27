@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio | Mano a Mano</title>
+</head>
+<body>
+    <main>
+        <h1>Servicio solicitado</h1>
+        <p><strong>Estado:</strong> <span th:text="${servicio.estado}">SOLICITADO</span></p>
+        <p><strong>Descripción:</strong> <span th:text="${servicio.descripcion}">Descripción</span></p>
+        <p><strong>Ubicación:</strong> <span th:text="${servicio.ubicacion}">Ubicación</span></p>
+
+        <h2>Cotizaciones</h2>
+        <p th:if="${cotizaciones.isEmpty()}">Aún no hay cotizaciones.</p>
+
+        <article th:each="c : ${cotizaciones}">
+            <p>
+                <strong>Cotización #<span th:text="${c.id}">1</span></strong>
+                <span th:text="${c.estado}">PENDIENTE</span>
+            </p>
+
+            <div th:if="${c.estado.name() == 'RESPONDIDA' or c.estado.name() == 'ACEPTADA'}">
+                <p>Mano de obra: <span th:text="${c.manoDeObra}">0</span></p>
+                <p>Materiales: <span th:text="${c.materiales}">0</span></p>
+                <p><strong>Total: <span th:text="${c.total}">0</span></strong></p>
+            </div>
+
+            <a th:if="${c.estado.name() == 'PENDIENTE'}"
+                th:href="@{/cotizaciones/{id}/responder(id=${c.id})}">Responder cotización</a>
+
+            <div th:if="${c.estado.name() == 'RESPONDIDA'}">
+                <form th:action="@{/cotizaciones/{id}/aceptar(id=${c.id})}" method="post">
+                    <button type="submit">Aceptar</button>
+                </form>
+                <form th:action="@{/cotizaciones/{id}/rechazar(id=${c.id})}" method="post">
+                    <button type="submit">Rechazar</button>
+                </form>
+            </div>
+        </article>
+
+        <form th:if="${servicio.estado.name() == 'SOLICITADO' or servicio.estado.name() == 'COTIZADO'}"
+                th:action="@{/servicios/{id}/cotizaciones(id=${servicio.id})}" method="post">
+            <button type="submit">Pedir una cotización</button>
+        </form>
+    </main>
+</body>
+</html>

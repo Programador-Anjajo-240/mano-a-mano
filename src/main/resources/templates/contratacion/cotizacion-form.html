@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responder cotización | Mano a Mano</title>
+</head>
+<body>
+    <main>
+        <h1>Responder cotización</h1>
+
+        <form th:action="@{/cotizaciones/{id}/responder(id=${cotizacionId})}"
+                th:object="${cotizacionForm}" method="post">
+            <div>
+                <label for="manoDeObra">Mano de obra</label>
+                <input type="number" step="0.01" id="manoDeObra" th:field="*{manoDeObra}">
+                <p th:if="${#fields.hasErrors('manoDeObra')}" th:errors="*{manoDeObra}">Error</p>
+            </div>
+            <div>
+                <label for="materiales">Materiales</label>
+                <input type="number" step="0.01" id="materiales" th:field="*{materiales}">
+                <p th:if="${#fields.hasErrors('materiales')}" th:errors="*{materiales}">Error</p>
+            </div>
+            <button type="submit">Enviar cotización</button>
+        </form>
+    </main>
+</body>
+</html>
