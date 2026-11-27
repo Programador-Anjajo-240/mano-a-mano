@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio | Mano a Mano</title>
+</head>
+<body>
+    <main>
+        <h1>Servicio solicitado</h1>
+        <p><strong>Estado:</strong> <span th:text="${servicio.estado}">SOLICITADO</span></p>
+        <p><strong>Descripción:</strong> <span th:text="${servicio.descripcion}">Descripción</span></p>
+        <p><strong>Ubicación:</strong> <span th:text="${servicio.ubicacion}">Ubicación</span></p>
+    </main>
+</body>
+</html>
