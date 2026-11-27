@@ -3,6 +3,8 @@ package com.manoamano.mano_a_mano.contratacion.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.manoamano.mano_a_mano.usuarios.model.PerfilTecnico;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -27,6 +29,10 @@ public class Cotizacion {
     @JoinColumn(name = "servicio_id", nullable = false)
     private ServicioSolicitado servicio;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "perfil_tecnico_id")
+    private PerfilTecnico tecnico;
+
     @Column(precision = 12, scale = 2)
     private BigDecimal manoDeObra;
 
@@ -47,6 +53,11 @@ public class Cotizacion {
         this.servicio = servicio;
     }
 
+    public Cotizacion(ServicioSolicitado servicio, PerfilTecnico tecnico) {
+        this.servicio = servicio;
+        this.tecnico = tecnico;
+    }
+
     public void responder(BigDecimal manoDeObra, BigDecimal materiales) {
         if (estado != EstadoCotizacion.PENDIENTE) {
             throw new IllegalStateException("Solo se puede responder una cotización pendiente");
@@ -56,7 +67,7 @@ public class Cotizacion {
         this.estado = EstadoCotizacion.RESPONDIDA;
     }
 
-        public void aceptar() {
+    public void aceptar() {
         if (estado != EstadoCotizacion.RESPONDIDA) {
             throw new IllegalStateException("Solo se puede aceptar una cotización respondida");
         }
@@ -70,19 +81,27 @@ public class Cotizacion {
         this.estado = EstadoCotizacion.RECHAZADA;
     }
 
+    public void asignarTecnico(PerfilTecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+
     public BigDecimal getTotal() {
         if (manoDeObra == null || materiales == null) {
             return BigDecimal.ZERO;
         }
         return manoDeObra.add(materiales);
     }
-    
+
     public Long getId() {
         return id;
     }
 
     public ServicioSolicitado getServicio() {
         return servicio;
+    }
+
+    public PerfilTecnico getTecnico() {
+        return tecnico;
     }
 
     public BigDecimal getManoDeObra() {

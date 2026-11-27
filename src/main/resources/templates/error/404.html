@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>No encontrado | Mano a Mano</title>
+</head>
+<body>
+    <main>
+        <h1>Recurso no encontrado (404)</h1>
+        <p th:text="${mensaje}">El registro solicitado no existe.</p>
+        <a th:href="@{/servicios/nuevo}">Volver a solicitar servicio</a>
+    </main>
+</body>
+</html>
