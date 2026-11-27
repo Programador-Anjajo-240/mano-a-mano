@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Panel</title></head>
+<body style="font-family:Arial;text-align:center;margin-top:60px">
+    <h2>Panel de TECNICO</h2>
+    <p>Bienvenido, <span th:text="${#authentication.name}"></span></p>
+    <form th:action="@{/logout}" method="post"><button>Cerrar sesión</button></form>
+</body>
+</html>
