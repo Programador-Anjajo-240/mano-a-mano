@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframes - Módulo Pagos y Comunicación | Mano a Mano</title>
+  <style>
+    /* ESTILOS DE WIREFRAME (ESCALA DE GRISES - BAJA/MEDIA FIDELIDAD) */
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #e5e7eb; color: #1f2937; margin: 0; padding: 20px; }
+    h1 { text-align: center; border-bottom: 2px solid #4b5563; padding-bottom: 10px; }
+    .indice { max-width: 900px; margin: 0 auto 30px auto; background: #fff; border: 2px dashed #6b7280; padding: 15px; }
+    .wireframe-contenedor {
+      max-width: 900px; margin: 0 auto 40px auto; background: #ffffff;
+      border: 2px solid #374151; padding: 20px;
+    }
+    .etiqueta-pantalla {
+      background: #374151; color: #fff; padding: 6px 12px;
+      font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px;
+    }
+    .barra-top {
+      display: flex; justify-content: space-between; align-items: center;
+      border: 1px solid #9ca3af; background: #f3f4f6; padding: 10px 15px; margin-bottom: 20px;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .caja { border: 1px solid #9ca3af; background: #f9fafb; padding: 15px; margin-bottom: 15px; }
+    .caja h3 { margin-top: 0; border-bottom: 1px solid #d1d5db; padding-bottom: 6px; font-size: 16px; }
+    .campo { margin-bottom: 12px; }
+    .campo label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+    .input-mock {
+      width: 100%; padding: 8px; border: 1px solid #6b7280; background: #fff; color: #4b5563;
+    }
+    .btn-mock {
+      padding: 10px 16px; border: 2px solid #1f2937; background: #d1d5db;
+      font-weight: bold; cursor: pointer; display: inline-block;
+    }
+    .btn-primario { background: #4b5563; color: #fff; }
+    .badge { border: 1px solid #4b5563; padding: 2px 8px; font-size: 12px; background: #e5e7eb; }
+    /* Chat */
+    .chat-box { border: 1px solid #6b7280; height: 220px; padding: 12px; overflow-y: auto; background: #f9fafb; margin-bottom: 10px; }
+    .msg { border: 1px solid #9ca3af; padding: 8px 12px; margin-bottom: 8px; max-width: 70%; background: #fff; }
+    .msg-propio { margin-left: auto; background: #e5e7eb; }
+    /* Tabla */
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #6b7280; padding: 8px; text-align: left; font-size: 13px; }
+    th { background: #d1d5db; }
+  </style>
+</head>
+<body>
+
+  <h1>WIREFRAMES: MÓDULO PAGOS Y COMUNICACIÓN (ISSUE #27)</h1>
+
+  <div class="indice">
+    <strong>Proyecto:</strong> Mano a Mano | <strong>Trazabilidad:</strong> HU-05 (Pagos), HU-06 (Calificación), HU-07 (Chat), HU-10 (Historial).<br>
+    <strong>Nota:</strong> Esquema estructural en escala de grises pendiente de aprobación del equipo antes de pasar a código.
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- WIREFRAME 1: PAGO DEL SERVICIO (HU-05 / RF-05)            -->
+  <!-- ========================================================= -->
+  <section class="wireframe-contenedor">
+    <span class="etiqueta-pantalla">PANTALLA 1 DE 4 | PAGO DEL SERVICIO (HU-05 / RF-05)</span>
+    <div class="barra-top">
+      <strong>[LOGO] Mano a Mano</strong>
+      <span>Rol: Cliente (Carlos Mendoza) | [Volver al Panel]</span>
+    </div>
+
+    <div class="grid-2">
+      <!-- Columna izquierda: Resumen del acuerdo -->
+      <div class="caja">
+        <h3>1. Resumen del Servicio Acordado</h3>
+        <p><strong>Código Servicio:</strong> #SRV-302</p>
+        <p><strong>Especialidad:</strong> Plomería</p>
+        <p><strong>Técnico Asignado:</strong> Andrés López</p>
+        <p><strong>Fecha Agendada:</strong> 28 Nov 2026 - 02:00 PM</p>
+        <p><strong>Estado del Pago:</strong> <span class="badge">PENDIENTE DE PAGO</span></p>
+        <hr>
+        <p style="font-size: 18px;"><strong>Total a Pagar: $85.000 COP</strong></p>
+      </div>
+
+      <!-- Columna derecha: Formulario de pago y comprobante -->
+      <div class="caja">
+        <h3>2. Selección de Método de Pago</h3>
+        <div class="campo">
+          <label>Método de Pago</label>
+          <select class="input-mock">
+            <option>-- Seleccione método --</option>
+            <option>Transferencia / Nequi / Daviplata</option>
+            <option>Tarjeta Débito / Crédito</option>
+            <option>Efectivo contra entrega (Verificado)</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label>Referencia / Número de Comprobante</label>
+          <input type="text" class="input-mock" value="Ej. REF-984512" readonly>
+        </div>
+        <div class="campo">
+          <label>Observaciones (Opcional)</label>
+          <input type="text" class="input-mock" value="Pago acordado tras negociación" readonly>
+        </div>
+        <button class="btn-mock btn-primario">[ Confirmar Pago y Generar Comprobante ]</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- WIREFRAME 2: CHAT INTERNO (HU-07 / RF-07)                 -->
+  <!-- ========================================================= -->
+  <section class="wireframe-contenedor">
+    <span class="etiqueta-pantalla">PANTALLA 2 DE 4 | CHAT INTERNO CLIENTE - TÉCNICO (HU-07 / RF-07)</span>
+    <div class="barra-top">
+      <strong>Chat del Servicio #SRV-302 (Plomería)</strong>
+      <span>Participantes: Carlos M. (Cliente) ↔ Andrés L. (Técnico)</span>
+    </div>
+
+    <div class="caja">
+      <div class="chat-box">
+        <div class="msg">
+          <strong>Andrés López (Técnico) - 10:15 AM:</strong><br>
+          Buenos días, ya acepté la cotización por $85.000. ¿Me confirma si tiene llave de paso cerca del lavaplatos?
+        </div>
+        <div class="msg msg-propio">
+          <strong>Carlos Mendoza (Cliente) - 10:17 AM:</strong><br>
+          Hola Andrés, sí señor, la llave está debajo del mueble. Te espero a las 2:00 PM.
+        </div>
+        <div class="msg">
+          <strong>Andrés López (Técnico) - 10:18 AM:</strong><br>
+          Perfecto, llevo el empaque y la herramienta necesaria.
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <input type="text" class="input-mock" value="Escribe un mensaje aquí (máx. 500 caracteres)..." readonly>
+        <button class="btn-mock btn-primario">[ Enviar ]</button>
+        <button class="btn-mock">[ Reportar Chat ]</button>
+      </div>
+      <p style="font-size: 12px; color: #4b5563; margin-bottom: 0;">
+        * Regla de moderación: No se permite compartir datos ofensivos; el historial queda guardado para auditoría.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- WIREFRAME 3: CALIFICACIÓN DEL SERVICIO (HU-06 / RF-06)    -->
+  <!-- ========================================================= -->
+  <section class="wireframe-contenedor">
+    <span class="etiqueta-pantalla">PANTALLA 3 DE 4 | CALIFICACIÓN Y REPUTACIÓN (HU-06 / RF-06)</span>
+    <div class="barra-top">
+      <strong>Calificar Servicio Finalizado</strong>
+      <span>Servicio #SRV-298 | Estado: FINALIZADO</span>
+    </div>
+
+    <div class="caja" style="max-width: 600px; margin: 0 auto;">
+      <h3>¿Cómo fue tu experiencia con Patricia Gómez (Pintora)?</h3>
+      <div class="campo">
+        <label>Puntuación General (1 a 5 estrellas)</label>
+        <div class="input-mock" style="font-size: 18px; letter-spacing: 4px;">
+          [ ★ ] [ ★ ] [ ★ ] [ ★ ] [ ☆ ] (4 / 5)
+        </div>
+      </div>
+      <div class="campo">
+        <label>Aspectos Destacados</label>
+        <div>
+          <span class="badge">[x] Puntualidad</span>
+          <span class="badge">[x] Calidad del trabajo</span>
+          <span class="badge">[ ] Limpieza</span>
+        </div>
+      </div>
+      <div class="campo">
+        <label>Comentario sobre el servicio</label>
+        <textarea class="input-mock" rows="3" readonly>Excelente trabajo en la pintura de la fachada, cumplió con el tiempo acordado.</textarea>
+      </div>
+      <button class="btn-mock btn-primario">[ Enviar Calificación ]</button>
+      <button class="btn-mock">[ Cancelar ]</button>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- WIREFRAME 4: HISTORIAL Y REPORTES (HU-10 / RF-10)         -->
+  <!-- ========================================================= -->
+  <section class="wireframe-contenedor">
+    <span class="etiqueta-pantalla">PANTALLA 4 DE 4 | HISTORIAL DE SERVICIOS Y TRANSACCIONES (HU-10 / RF-10)</span>
+    <div class="barra-top">
+      <strong>Historial de Servicios y Pagos</strong>
+      <button class="btn-mock btn-primario">[ Descargar Reporte PDF ]</button>
+    </div>
+
+    <div class="caja">
+      <!-- Filtros -->
+      <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <input type="text" class="input-mock" value="Buscar por código o técnico..." readonly>
+        <select class="input-mock">
+          <option>Estado: Todos</option>
+          <option>Finalizado</option>
+          <option>Cancelado</option>
+        </select>
+        <input type="date" class="input-mock">
+        <button class="btn-mock">[ Filtrar ]</button>
+      </div>
+
+      <!-- Tabla de historial -->
+      <table>
+        <thead>
+          <tr>
+            <th>ID Servicio</th>
+            <th>Fecha</th>
+            <th>Especialidad</th>
+            <th>Contraparte</th>
+            <th>Valor Pagado</th>
+            <th>Estado</th>
+            <th>Comprobante</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#SRV-302</td>
+            <td>28/11/2026</td>
+            <td>Plomería</td>
+            <td>Andrés López</td>
+            <td>$85.000</td>
+            <td><span class="badge">PAGADO / EN CURSO</span></td>
+            <td><button class="btn-mock">[ Ver Recibo ]</button></td>
+          </tr>
+          <tr>
+            <td>#SRV-298</td>
+            <td>20/11/2026</td>
+            <td>Pintura</td>
+            <td>Patricia Gómez</td>
+            <td>$220.000</td>
+            <td><span class="badge">FINALIZADO</span></td>
+            <td><button class="btn-mock">[ Ver Recibo ]</button></td>
+          </tr>
+          <tr>
+            <td>#SRV-281</td>
+            <td>10/11/2026</td>
+            <td>Electricidad</td>
+            <td>Marcos Ruiz</td>
+            <td>$0</td>
+            <td><span class="badge">CANCELADO</span></td>
+            <td>--</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</body>
+</html>
